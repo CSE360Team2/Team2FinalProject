@@ -156,7 +156,16 @@ public class ExamBrain extends Observable {
 		}
 		return result;
 	}
+	public int[] getSelectionList(){
+		return selectionList;
+	}
 	
+	public int[] getCorrectAnswer(){
+		return correctAnswer;
+	}
+	public long[] getlastElaspsedTime(){
+		return lastElaspsedTime;
+	}
 	//set answered question
 	public void updateResult(int num, int selected, long tm)
 	{
