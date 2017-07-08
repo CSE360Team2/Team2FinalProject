@@ -12,8 +12,8 @@ Lin Sun
 public class BlackBoard extends Observable implements Observer {
 	private boolean[] correctorNot= new boolean[10];
 	private long[] time = new long[10];
-	private int[] selectionList;
-	private int[] answerList;
+	private int[] selectionList=new int[10];
+	private int[] answerList=new int[10];
 	private int count;
 	private int numcorrect;
 	private static BlackBoard instance;
@@ -73,6 +73,7 @@ public class BlackBoard extends Observable implements Observer {
 		return count;
 	}
 	public int getNumcorrect() {
+		System.out.println(numcorrect);
 		return numcorrect;
 	}
 	
@@ -85,6 +86,7 @@ public class BlackBoard extends Observable implements Observer {
 		setAnswerList(((ExamBrain)o).getCorrectAnswer());
 		setCorrectorNot(((ExamBrain)o).getCorrectorNot());
 		setQuesAnswered(((ExamBrain)o).getCount());
+		setNumcorrect();
 		this.notifyObservers();
 		
 	}
