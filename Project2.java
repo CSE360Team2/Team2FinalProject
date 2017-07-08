@@ -1,12 +1,3 @@
-
-/*
- * main 
- * 
- * Lin Sun
- * Kyle Sun
- * Jingyi Li
- */
- 
 package CSE360;
 
 import java.awt.*;
@@ -20,16 +11,19 @@ import java.io.FileNotFoundException;
 import javax.swing.*;
 
 public class Project2 extends JFrame{
-
+	
+	//ExamBrain eb = ExamBrain.getInstance();
 	private static JLayeredPane layeredPane;
 	private static int FRAME_WIDTH = 500;
     private static int FRAME_HEIGHT = 500;
     SwitchPage switchPage;
     JScrollPane scroll;
     private Dimension newSize;
-    
+   // BlackBoard bb = new BlackBoard();
+   
     public Project2 () throws FileNotFoundException {
-    
+    	//eb.addObserver(bb);
+    	
      layeredPane = new JLayeredPane();
      layeredPane.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));  
      GridLayout grid = new GridLayout(1,1);   
