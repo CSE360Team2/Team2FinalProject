@@ -17,10 +17,9 @@ public class BlackBoard extends Observable implements Observer {
 	private int count;
 	private int numcorrect;
 	private static BlackBoard instance;
-	BlackBoard bb = BlackBoard.getInstance();
 	CompanionBrain cb = new CompanionBrain();
 	public BlackBoard(){
-		bb.addObserver(cb);
+		this.addObserver(cb);
 	}
 	
 	public static BlackBoard getInstance(){
