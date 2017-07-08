@@ -18,13 +18,26 @@ public class ExamBrain extends Observable {
 	private ArrayList<Answer> answerListD; // all the D answers
 	private int[] selectionList; //answer of the user
 	private int[] correctAnswer; //correct answer; 1-A, 2-B, 3-C, 4-D
+	private int count;
 	private long[] lastElaspsedTime;  // keep track of the last action time.
-
+	private boolean[] correctorNot;
+	private static ExamBrain instance;
+	
+	public static ExamBrain getInstance() throws FileNotFoundException{
+		if (instance == null) {
+		       instance = new ExamBrain();
+		     }
+		     return instance;
+	}
 	public ExamBrain() throws FileNotFoundException
 	{
+		BlackBoard bb = new BlackBoard();
+		this.addObserver(bb);
 		//selectionList while it is zero, no attempt. 1,2,3,4, in representative of A,B,C,D
+		correctAnswer = new int[10];
 		selectionList = new int[10]; 
 		lastElaspsedTime = new long[10];
+		correctorNot = new boolean[10];
 		
 		//instantiate 
 		questionList = new ArrayList<Question>();
@@ -37,7 +50,7 @@ public class ExamBrain extends Observable {
 
 		int index1 = 0;
 		//read all the questions into the questionList ArrayList
-		Scanner scanner = new Scanner(new File("QandA/CSE360QuizData.csv"));
+		Scanner scanner = new Scanner(new File("src/CSE360/QandA/CSE360QuizData.csv"));
         scanner.useDelimiter(",");
         String temp = new String("Test");
         if (scanner.hasNext())
@@ -156,16 +169,36 @@ public class ExamBrain extends Observable {
 		}
 		return result;
 	}
-	public void setSelectionList(int[] selectionList){
-		this.selectionList=selectionList;
+	public void setSelectionList(int i,int selected){
+		selectionList[i]=selected;
 		setChanged();
 	}
 	public void setCorrectAnswer(int[] correctAnswer){
 		this.correctAnswer=correctAnswer;
 		setChanged();
 	}
-	public void setlastElaspsedTime(long[] lastElaspsedTime){
-		this.lastElaspsedTime=lastElaspsedTime;
+	public void setlastElaspsedTime(int i,long lastElaspsedTime){
+		this.lastElaspsedTime[i]=lastElaspsedTime;
+		setChanged();
+	}
+	
+	public void setCorrectorNot(int[]ansList,int selected, int num) {
+		if(ansList[num]==selected){
+			correctorNot[num]=true;
+		}
+		else{
+			correctorNot[num]=false;
+		}
+		setChanged();
+	}
+	public boolean[] getCorrectorNot() {
+		return correctorNot;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 		setChanged();
 	}
 	public int[] getSelectionList(){
@@ -182,14 +215,19 @@ public class ExamBrain extends Observable {
 	public void updateResult(int num, int selected, long tm)
 	{
         System.out.println("New selection made");
-		selectionList[num-1] = selected;
-		lastElaspsedTime[num-1] = tm/1000;
+		//selectionList[num-1] = selected;
+        setSelectionList(num-1,selected);
+		//lastElaspsedTime[num-1] = tm/1000;
+        setlastElaspsedTime(num-1,tm/1000);
+        setCorrectorNot(correctAnswer,selected,num-1);
         for (int i =0; i< selectionList.length; i++ )
         {
         	System.out.println("Answer: " + selectionList[i]);
         	System.out.println("Last log Time: " + lastElaspsedTime[i]);
 
         }
-	    //setChanged();
+        count++;
+        this.notifyObservers();
 	}
+	
 }
