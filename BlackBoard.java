@@ -87,6 +87,6 @@ public class BlackBoard extends Observable implements Observer {
 			count++;//increase the # of question answered. 
 			setNumcorrect();
 		}
-		
+		this.notifyObservers();
 	}
 }
