@@ -41,8 +41,8 @@ public class BlackBoard extends Observable implements Observer {
 		this.time=time;
 		setChanged();
 	}
-	public void setCorrectorNot(boolean n,int i){
-		this.correctorNot[i]=n;
+	public void setCorrectorNot(boolean[] correctorNot){
+		this.correctorNot=correctorNot;
 		setChanged();
 	}
 	public void setNumcorrect() {
@@ -51,6 +51,10 @@ public class BlackBoard extends Observable implements Observer {
 				numcorrect++;
 			}
 		}
+		setChanged();
+	}
+	public void setQuesAnswered(int count){
+		this.count=count;
 		setChanged();
 	}
 	public boolean[] getCorrectorNot(){
@@ -77,16 +81,9 @@ public class BlackBoard extends Observable implements Observer {
 		setTime(((ExamBrain)o).getlastElaspsedTime());
 		setAnswerList(((ExamBrain)o).getSelectionList());
 		setAnswerList(((ExamBrain)o).getCorrectAnswer());
-		for(int i = 0; i<correctorNot.length;i++){
-			if(selectionList[i]==answerList[i]){
-				setCorrectorNot(true,i);
-			}
-			else{
-				setCorrectorNot(false,i);
-			}
-			count++;//increase the # of question answered. 
-			setNumcorrect();
-		}
+		setCorrectorNot(((ExamBrain)o).getCorrectorNot());
+		setQuesAnswered(((ExamBrain)o).getCount());
 		this.notifyObservers();
+		
 	}
 }
