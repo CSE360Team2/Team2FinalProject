@@ -156,6 +156,18 @@ public class ExamBrain extends Observable {
 		}
 		return result;
 	}
+	public void setSelectionList(int[] selectionList){
+		this.selectionList=selectionList;
+		setChanged();
+	}
+	public void setCorrectAnswer(int[] correctAnswer){
+		this.correctAnswer=correctAnswer;
+		setChanged();
+	}
+	public void setlastElaspsedTime(long[] lastElaspsedTime){
+		this.lastElaspsedTime=lastElaspsedTime;
+		setChanged();
+	}
 	public int[] getSelectionList(){
 		return selectionList;
 	}
@@ -178,6 +190,6 @@ public class ExamBrain extends Observable {
         	System.out.println("Last log Time: " + lastElaspsedTime[i]);
 
         }
-	    setChanged();
+	    //setChanged();
 	}
 }
