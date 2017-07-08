@@ -19,10 +19,9 @@ public class Project2 extends JFrame{
     SwitchPage switchPage;
     JScrollPane scroll;
     private Dimension newSize;
-   // BlackBoard bb = new BlackBoard();
+    BlackBoard bb = new BlackBoard();
    
     public Project2 () throws FileNotFoundException {
-    	//eb.addObserver(bb);
     	
      layeredPane = new JLayeredPane();
      layeredPane.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));  
@@ -32,7 +31,11 @@ public class Project2 extends JFrame{
      switchPage = new SwitchPage();
      switchPage.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
      
+     
      CompanionPanel companion = new CompanionPanel();
+     switchPage.examPage.thisExam.addObserver(bb);
+     bb.addObserver(companion.brain);
+     
      companion.setBounds(0,0,FRAME_WIDTH, FRAME_HEIGHT);
      //switch panel on bottom, companion on top
      layeredPane.setOpaque(false);               
