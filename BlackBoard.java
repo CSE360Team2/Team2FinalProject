@@ -20,12 +20,14 @@ public class BlackBoard extends Observable implements Observer {
 	}
 	public void setCorrectorNot(boolean[] correctorNot){
 		this.correctorNot=correctorNot;
+		setChanged();
 	}
 	public long[] getTime(){
 		return time;
 	}
 	public void setTime(long[] time){
 		this.time=time;
+		setChanged();
 	}
 
 	//get how many question answered
@@ -41,6 +43,7 @@ public class BlackBoard extends Observable implements Observer {
 				numcorrect++;
 			}
 		}
+		setChanged();
 	}
 	@Override
 	/*Update time,correctness from ExamBrain*/
