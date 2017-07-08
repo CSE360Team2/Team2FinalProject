@@ -662,6 +662,7 @@ public class CompanionBrain implements Observer {
         answered.*/
         @Override
         public void update(Observable o, Object arg) {
+        	System.out.println("update called at cBrain");
             int newCorrect = 0;
             int newAnswered = ((BlackBoard)o).getQuesAnswered();
             boolean[] corrArr = ((BlackBoard)o).getCorrectorNot();
