@@ -45,7 +45,7 @@ public class SwitchPage extends JPanel implements ActionListener{
 
 	            } 
 	            else if (loginPage == component && (loginPage.user == null || loginPage.user == " ")){
-	            	loginPage.text.setText("Please enter a valid user name and click enter");
+	            	loginPage.text.setText("Before click strat, Please enter a valid user name and press enter");
 	            }
 	            else {
 	                remove(examPage);
