@@ -32,7 +32,7 @@ public class ExamBrain extends Observable {
 	public ExamBrain() throws FileNotFoundException
 	{
 		BlackBoard bb = new BlackBoard();
-		this.addObserver(bb);
+		//this.addObserver(bb);
 		//selectionList while it is zero, no attempt. 1,2,3,4, in representative of A,B,C,D
 		correctAnswer = new int[10];
 		selectionList = new int[10]; 
@@ -222,8 +222,8 @@ public class ExamBrain extends Observable {
         setCorrectorNot(correctAnswer,selected,num-1);
         for (int i =0; i< selectionList.length; i++ )
         {
-        	System.out.println("Answer: " + selectionList[i]);
-        	System.out.println("Last log Time: " + lastElaspsedTime[i]);
+        //	System.out.println("Answer: " + selectionList[i]);
+        //	System.out.println("Last log Time: " + lastElaspsedTime[i]);
 
         }
         count++;
