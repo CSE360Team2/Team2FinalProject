@@ -17,7 +17,9 @@ public class BlackBoard extends Observable implements Observer {
 	private int count;
 	private int numcorrect;
 	private static BlackBoard instance;
-	CompanionBrain cb = new CompanionBrain();
+	private int FRAME_WIDTH = 500;
+	private int FRAME_HEIGHT = 500;
+	CompanionBrain cb = new CompanionBrain(FRAME_WIDTH, FRAME_HEIGHT);
 	public BlackBoard(){
 		this.addObserver(cb);
 	}
